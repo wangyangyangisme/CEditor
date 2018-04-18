@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,10 +20,10 @@
 <body class="baitian">
 <div class="container-fluid">
     <div class="row home">
-        <h1><b><a href="/">Blog</a></b></h1>
-        <h3>
+        <h1><b><a href="#">CEditor</a></b></h1>
+        <!--<h3>
             <small><i>让你专注写作</i></small>
-        </h3>
+        </h3>-->
         <!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
                 aria-expanded="false" aria-controls="collapseExample">
             Button with data-target
@@ -36,7 +36,7 @@
     </div>
     <div class="setting">
         <span class="glyphicon glyphicon-edit" style="color: #f9f9f9; font-size: 30px; padding: 13px;"></span>
-        <div class="writeHelp">
+        <div class="writeHelp" id="writeHelp">
             <h4 class="text-center"><span class="glyphicon glyphicon-cog"></span> 设置</h4>
             <div class="form-group" style="margin-bottom: 30px">
                 <label>主题</label>
@@ -63,12 +63,30 @@
                     <option value="随笔">随笔</option>
                 </select>
             </div>
-            <div style="padding-bottom: 20px; margin-top: 150px" class="text-center">
+            <div>
+                <button type="button" class="btn btn-default" id="caogao" onclick="openCaogao();">草稿管理</button>
+            </div>
+            <div style="padding-bottom: 20px; margin-top: 20px" class="text-center">
                 <a href="javascript:$.proxy(editor.toolbarHandlers.help, editor)();"><span>Markdown使用帮助</span></a>
             </div>
             <div class="btn-group pull-right" role="group">
                 <button type="button" class="btn btn-default" id="save" onclick="savelocal();"><span class="glyphicon glyphicon-floppy-saved"></span> 保存</button>
                 <button type="button" class="btn btn-default" id="share"><span class="glyphicon glyphicon-share-alt"></span> 发布</button>
+            </div>
+        </div>
+        <div class="writeCaogao" id="writeCaogao">
+            <h4 class="text-center"><span class="glyphicon glyphicon-duplicate"></span> 草稿管理</h4>
+            <div class="table-responsive" style="height: 380px">
+                <table class="table table-hover">
+                    <tr><th>标题</th><th>分类</th><th>时间</th><th></th></tr>
+                </table>
+                <div class="loading">
+                    <img src="images/loading.gif" alt="">
+                    <span>正在读取数据。。。</span>
+                </div>
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" id="Cexit" onclick="Cexit()"><span class="glyphicon glyphicon-arrow-right"></span> 返回</button>
             </div>
         </div>
     </div>
@@ -85,7 +103,8 @@
 <script>
     var editor;
     $(function () {
-        getlocal();
+        //读取本地草稿
+            getlocal();
         // 配置编译器
             editor = editormd({
             id: "editormd",
@@ -155,10 +174,21 @@
             source = articleDate.source;
             title = articleDate.title;
             sort = articleDate.sort;
-            $('#title').val(title);
-            $('#sort').val(sort);
-            $('textarea').val(source);
+//            $('#title').val(title);
+//            $('#sort').val(sort);
+//            $('textarea').val(source);
         }
+    }
+
+    //打开草稿管理
+    function openCaogao() {
+        $('#writeHelp').css("display", "none");
+//        $('#writeCaogao').css("display", "block");
+        $('#writeCaogao').slideDown(300);
+    }
+    function Cexit() {
+        $('#writeCaogao').css('display', 'none');
+        $('#writeHelp').css('display', 'block');
     }
 </script>
 </html>
