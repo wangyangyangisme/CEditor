@@ -187,7 +187,7 @@
                 temp = localStorage.getItem(key + '_' + i);
                 if (temp != null) {
                     articleDate = JSON.parse(temp);
-                    $('#writeCaogao table tbody:eq(1)').append('<tr><td>' + i + '</td><td>' + articleDate.title + '</td><td>' + articleDate.sort + '</td><td>' + articleDate.date + '</td><td class="text-center"><a href="javascript:(0)" title="删除" onclick="delCg(this)"><span class="fa fa-remove"> </span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:(0)" title="编辑" onclick="editorCg(this)"><span class="fa fa-file-text-o"> </span></a></td></tr>')
+                    $('#writeCaogao table tbody:eq(1)').append('<tr><td>' + i + '</td><td>' + articleDate.title + '</td><td>' + articleDate.sort + '</td><td>' + articleDate.date + '</td><td class="text-center"><a data-toggle="tooltip" data-placement="left" href="javascript:(0)" title="删除" onclick="delCg(this)"><span class="fa fa-remove"> </span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a data-toggle="tooltip" data-placement="left" href="javascript:(0)" title="编辑" onclick="editorCg(this)"><span class="fa fa-file-text-o"> </span></a></td></tr>')
                 }
             }
             $('#loading').remove();
@@ -202,6 +202,7 @@
         $('#writeCaogao').slideDown(300);
         $('#writeCaogao table tbody:eq(1)').html(' ');
         getlocal();
+        $("[data-toggle='tooltip']").tooltip();
     }
     //退出草稿管理
     function Cexit() {
